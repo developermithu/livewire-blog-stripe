@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\ModelHelpers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,12 +27,11 @@ class User extends Authenticatable
     const MODERATOR = 2;
     const WRITER = 3;
     const ADMIN = 4;
+    const SUPERADMIN = 5;
 
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var string[]
      */
     protected $fillable = [
         'name',
@@ -42,8 +42,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
-     * @var array
      */
     protected $hidden = [
         'password',
@@ -54,8 +52,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be cast.
-     *
-     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -63,8 +59,6 @@ class User extends Authenticatable
 
     /**
      * The accessors to append to the model's array form.
-     *
-     * @var array
      */
     protected $appends = [
         'profile_photo_url',
@@ -107,6 +101,11 @@ class User extends Authenticatable
         return $this->type() === self::ADMIN; //4
     }
 
+    public function isSuperAdmin(): bool
+    {
+        return $this->type() === self::SUPERADMIN; //5
+    }
+
 
     /**
      * Get the profile associated with the User
@@ -114,5 +113,13 @@ class User extends Authenticatable
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Get all of the posts for the User
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id');
     }
 }

@@ -9,4 +9,5 @@ trait ModelHelpers
     {
         return $this->id() == $model->id();
     }
+    
 }
