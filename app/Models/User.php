@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\ModelHelpers;
+use Laravel\Cashier\Billable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,6 +22,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use ModelHelpers; //custom traits
+    use Billable;
 
     // User Type
     const DEFAULT = 1;
