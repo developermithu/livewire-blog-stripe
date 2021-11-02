@@ -19,11 +19,12 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->longText('body');
             $table->string('cover_image');
+            $table->boolean('is_commentable')->default(1);
             $table->timestamp('published_at');
             $table->enum('type', ['standard', 'premium'])->default('standard');
             $table->string('photo_credit_text')->nullable();
             $table->string('photo_credit_link')->nullable();
-            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

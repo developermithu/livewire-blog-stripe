@@ -9,6 +9,9 @@
 1. Setting
 1. Plan
 
+### Seeder
+1. PlanSeeder
+
 ### Policy & Register `(AuthServiceProvider)`
 1. UserPolicy
 1. PostPolicy
@@ -22,6 +25,7 @@
 
 ### Contracts
 1. CommentAble
+
 ### Casts
 1. TitleCast
 1. PriceCast
@@ -31,7 +35,7 @@
 ```
 composer require laravel/cashier
 php artisan migrate
-php artisan vendor:publish --tag="cashier-migrations" (create three tables in db)
+php artisan vendor:publish --tag="cashier-migrations" (created three tables in db)
 use Billable (In User Model)
 ```
 

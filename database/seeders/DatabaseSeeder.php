@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserTableSeeder::class);
+
+        $this->call(UserSeeder::class);
+        $this->call(PlanSeeder::class);
+
+        Post::factory(20)->create();
+
+        $this->call(TagSeeder::class);
+        $this->call(CommentSeeder::class);
     }
 }

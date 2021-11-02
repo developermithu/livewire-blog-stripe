@@ -14,9 +14,14 @@ use Illuminate\Support\Str;
 class Post extends Model implements CommentAble
 {
     use HasFactory;
-    use HasAuthor; // custom trait
-    use HasTags; // custom trait
-    use HasComments; // custom trait
+
+    // Custom Trait
+    use HasAuthor;
+    use HasTags;
+    use HasComments;
+
+    const TABLE = 'posts';
+    protected $table = self::TABLE;
 
     protected $fillable = [
         'title',
@@ -28,6 +33,7 @@ class Post extends Model implements CommentAble
         'photo_credit_text',
         'photo_credit_link',
         'author_id',
+        'is_commentable',
     ];
 
     // Eager Load The Relationship like Post::with(['user', 'tags', 'comments'])
@@ -40,6 +46,7 @@ class Post extends Model implements CommentAble
     protected $casts = [
         'published_at' => 'datetime',
         'title' => TitleCast::class,
+        'is_commentable' => 'boolean',
     ];
 
     public function id(): int
@@ -64,13 +71,13 @@ class Post extends Model implements CommentAble
 
     public function coverImage(): string
     {
-        return $this->coverImage;
+        return $this->coverImage;  // should cover_image
     }
 
     // automatically remove tags when destroy the post
     public function delete()
     {
-        $this->removeTags();
+        $this->removeTags();  // Error
         parent::delete();
     }
 

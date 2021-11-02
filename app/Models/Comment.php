@@ -13,8 +13,13 @@ use Illuminate\Support\Str;
 class Comment extends Model
 {
     use HasFactory;
-    use HasAuthor; // custom trait
-    use ModelHelpers; // custom trait
+
+    // Custom Trait
+    use HasAuthor;
+    use ModelHelpers;
+
+    const TABLE = 'comments';
+    protected $table = self::TABLE;
 
     protected $fillable = ['body'];
 

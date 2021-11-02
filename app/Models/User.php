@@ -31,6 +31,8 @@ class User extends Authenticatable
     const ADMIN = 4;
     const SUPERADMIN = 5;
 
+    const TABLE = 'users';
+    protected $table = self::TABLE;
 
     /**
      * The attributes that are mass assignable.

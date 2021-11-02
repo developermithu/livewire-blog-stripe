@@ -9,6 +9,9 @@ class Tag extends Model
 {
     use HasFactory;
 
+    const TABLE = 'tags';
+    protected $table = self::TABLE;
+
     protected $fillable = [
         'name',
         'slug',
