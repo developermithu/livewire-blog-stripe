@@ -22,7 +22,7 @@ class ProfileFactory extends Factory
     public function definition()
     {
         return [
-            'bio' => $this->faker->paragraph(3),
+            'bio' => $this->faker->paragraph(2),
             'facebook' => $this->faker->url(),
             'instagram' => $this->faker->url(),
             'twitter' => $this->faker->url(),

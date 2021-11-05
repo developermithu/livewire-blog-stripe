@@ -1,22 +1,30 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BillingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Pages\TagController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostController;
 use App\Http\Controllers\Pages\AuthorController;
-use App\Http\Controllers\Pages\CheckoutController;
 use App\Http\Controllers\Pages\MembershipController;
-
-
+use App\Http\Controllers\Stripe\PaymentController;
 
 require 'admin.php';
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/membership', MembershipController::class)->name('membership');
 Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/checkout', CheckoutController::class)->name('checkout');
+
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+
+// Billing
+Route::get('/dashboard/billing', [BillingController::class, 'index'])->name('billing');
+
+// Authenticate Route
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/membership', MembershipController::class)->name('membership');
+});
 
 // Authors
 Route::group(['prefix' => 'authors', 'as' => 'authors.'], function () {

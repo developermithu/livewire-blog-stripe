@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use function Illuminate\Events\queueable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,6 +43,12 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
+        'line1',
+        'line2',
+        'city',
+        'state',
+        'country',
+        'postal_code',
     ];
 
     /**
@@ -89,6 +96,36 @@ class User extends Authenticatable
         return $this->type;
     }
 
+    public function line1(): ?string
+    {
+        return $this->line1;
+    }
+
+    public function line2(): ?string
+    {
+        return $this->line2;
+    }
+
+    public function city(): ?string
+    {
+        return $this->city;
+    }
+
+    public function state(): ?string
+    {
+        return $this->state;
+    }
+
+    public function country(): ?string
+    {
+        return $this->country;
+    }
+
+    public function postalCode(): ?string
+    {
+        return $this->postal_code;
+    }
+
     // User Type
     public function isModerator(): bool
     {
@@ -125,5 +162,26 @@ class User extends Authenticatable
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
+    }
+
+    //[ https://laravel.com/docs/8.x/billing#syncing-customer-data-with-stripe ]
+    protected static function booted()
+    {
+        static::updated(queueable(function ($customer) {
+            $customer->syncStripeCustomerDetails();
+        }));
+    }
+
+    // From Billable/ManageCustomer
+    public function stripeAddress()
+    {
+        return [
+            'line1'                 => $this->line1(),
+            'line2'                 => $this->line2(),
+            'city'                   => $this->city(),
+            'state'                => $this->state(),
+            'country'           => $this->country(),
+            'postal_code'   => $this->postalCode(),
+        ];
     }
 }

@@ -1,6 +1,7 @@
 <!-- alt+m  for snippets -->
 
 ### Models
+
 1. User
 1. Profile `(user_id)`
 1. Post
@@ -10,23 +11,31 @@
 1. Plan
 
 ### Seeder
+
+1. UserSeeder
 1. PlanSeeder
+1. TagSeeder
+1. CommentSeeder
 
 ### Policy & Register `(AuthServiceProvider)`
+
 1. UserPolicy
 1. PostPolicy
 1. CommentPolicy
 
 ### Traits
+
 1. ModelHelpers
 1. HasAuthor
 1. HasTags
 1. HasComments
 
 ### Contracts
+
 1. CommentAble
 
 ### Casts
+
 1. TitleCast
 1. PriceCast
 
@@ -38,5 +47,3 @@ php artisan migrate
 php artisan vendor:publish --tag="cashier-migrations" (created three tables in db)
 use Billable (In User Model)
 ```
-
-

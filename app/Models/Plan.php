@@ -23,6 +23,26 @@ class Plan extends Model
         'price' => PriceCast::class,
     ];
 
+    public function name()
+    {
+        return $this->name;
+    }
+
+    public function price()
+    {
+        return '$' . number_format($this->price, 2);
+    }
+
+    public function abbreviation()
+    {
+        return $this->abbreviation;
+    }
+
+    public function stripeName()
+    {
+        return $this->stripe_name;
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

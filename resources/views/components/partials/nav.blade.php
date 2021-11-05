@@ -53,7 +53,7 @@
                     </x-jet-nav-link>
 
                     {{-- Checkout --}}
-                    <x-jet-nav-link href="{{ route('checkout') }}" :active="request()->routeIs('checkout')">
+                    <x-jet-nav-link href="{{ route('payments') }}" :active="request()->routeIs('payments')">
                         {{ __('Checkout') }}
                     </x-jet-nav-link>
                 </div>

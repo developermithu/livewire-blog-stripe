@@ -50,5 +50,7 @@
 
     {{-- Livewire --}}
     <livewire:scripts />
+
+    @stack('js')
 </body>
 </html>
