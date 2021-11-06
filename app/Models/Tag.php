@@ -44,6 +44,11 @@ class Tag extends Model
         return $this->description;
     }
 
+    public function createdAt(): string
+    {
+        return $this->created_at->format('m-d-Y');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

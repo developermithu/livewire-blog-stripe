@@ -26,9 +26,9 @@
                 {{ __('Post') }}
             </x-sidenav.admin.title>
             <div>
-                <x-sidenav.admin.link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <x-sidenav.admin.link href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts.index')">
                     <x-zondicon-user class="w-3 text-theme-blue-100" />
-                    <span>{{ __('index') }}</span>
+                    <span>{{ __('Index') }}</span>
                 </x-sidenav.admin.link>
             </div>
 
@@ -46,9 +46,9 @@
                 {{ __('Tag') }}
             </x-sidenav.admin.title>
             <div>
-                <x-sidenav.admin.link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                <x-sidenav.admin.link href="{{ route('admin.tags.index') }}" :active="request()->routeIs('admin.tags.index')">
                     <x-zondicon-user class="w-3 text-theme-blue-100" />
-                    <span>{{ __('index') }}</span>
+                    <span>{{ __('Index') }}</span>
                 </x-sidenav.admin.link>
             </div>
 
@@ -74,9 +74,7 @@
                         <x-heroicon-o-logout class="w-4 text-theme-blue-100" />
                         <span>{{ __('Logout') }}</span>
                     </x-sidenav.admin.link>
-
                 </form>
-
             </div>
         </div>
 

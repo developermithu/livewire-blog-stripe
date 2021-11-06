@@ -74,6 +74,11 @@ class Post extends Model implements CommentAble
         return $this->coverImage;  // should cover_image
     }
 
+    public function publishedAt(): string
+    {
+        return $this->published_at->format('m-d-Y');  
+    }
+
     // automatically remove tags when destroy the post
     public function delete()
     {
