@@ -15,7 +15,7 @@
             </ul>
         </div>
 
-        <div class="col-span-1">
+        <div class="col-span-1"> 
             <h2 class="heading">Tags</h2>
             <div class="flex flex-wrap gap-3">
                 <x-buttons.default>

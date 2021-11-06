@@ -24,12 +24,20 @@
 
     <div class="min-h-screen bg-gray-100">
 
-        <x-dashboard.nav />
+        @admin
+            <x-dashboard.admin.nav />
+        @else 
+            <x-dashboard.nav />
+        @endadmin
 
         <div class="grid grid-cols-8">
 
             {{-- Sidenav --}}
-            <x-dashboard.sidenav />
+            @admin
+                <x-dashboard.admin.sidenav />
+            @else 
+                <x-dashboard.sidenav />
+            @endadmin
 
             <div class="col-span-7">
                 <!-- Page Heading -->

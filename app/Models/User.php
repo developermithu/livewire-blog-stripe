@@ -68,6 +68,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Eager Load The Relationship like User::with('subscriptions')
+    protected $with = [
+        'subscriptions',
+    ];
+
+
     /**
      * The accessors to append to the model's array form.
      */
@@ -94,6 +100,11 @@ class User extends Authenticatable
     public function type(): int
     {
         return $this->type;
+    }
+
+    public function joinedAt()
+    {
+        return $this->created_at->format('d-m-Y');
     }
 
     public function line1(): ?string
@@ -145,6 +156,11 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->type() === self::SUPERADMIN; //5
+    }
+
+    public function isDefault(): bool
+    {
+        return $this->type() === self::DEFAULT; //5
     }
 
 

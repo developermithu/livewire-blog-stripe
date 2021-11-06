@@ -77,9 +77,15 @@
                         <span class="text-4xl font-extrabold">{{ $plan->price() }}</span>
                         <span class="text-base font-medium text-gray-500">{{ $plan->abbreviation() }}</span>
                     </p>
-                    <x-link.primary href="{{ route('payments', ['plan' => $plan->stripeName()]) }}">
-                        Sign Up
-                    </x-link.primary>
+
+                    @subscribedToProduct(auth()->user(), $plan->stripeProductId(), $plan->stripeName())
+                        <h2 class="p-2 mt-6 text-center bg-green-500 rounded text-lg text-white">You have already subscribed</h2>
+
+                    @else
+                        <x-link.primary href="{{ route('payments', ['plan' => $plan->stripeName()]) }}">
+                            Sign Up
+                        </x-link.primary>
+                    @endsubscribedToProduct
 
                 </div>
                 <div class="px-6 pt-6 pb-8">

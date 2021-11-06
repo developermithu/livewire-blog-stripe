@@ -1,5 +1,5 @@
 <!-- alt+m  for snippets -->
-
+Start ```php artisan queue:work```
 ### Models
 
 1. User
@@ -39,6 +39,14 @@
 1. TitleCast
 1. PriceCast
 
+### Providers
+CustomBladeServiceProvider
+
+### Responses
+LoginResponse
+
+### Middleware
+IsAdmin
 ### Laravel Cashier Setup
 
 ```

@@ -14,12 +14,12 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-
         Plan::create([
             'name' => 'Monthly Plan',
             'slug' => 'monthly-plan',
             'stripe_name' => 'monthly',
-            'stripe_id' => 'price_1Jj02mGHDe88FCaV4zyILD1d',
+            'stripe_product_id' => 'prod_KNlZUhVX9iHIFv',
+            'stripe_price_id' => 'price_1Jj02mGHDe88FCaV4zyILD1d',
             'price' => 5,
             'abbreviation' => '/month',
         ]);
@@ -28,7 +28,8 @@ class PlanSeeder extends Seeder
             'name' => 'Yearly Plan',
             'slug' => 'yearly-plan',
             'stripe_name' => 'yearly',
-            'stripe_id' => 'price_1Jj03AGHDe88FCaVIoFJhyUV',
+            'stripe_product_id' => 'prod_KNlaXByoxrJucb',
+            'stripe_price_id' => 'price_1Jj03AGHDe88FCaVIoFJhyUV',
             'price' => 50,
             'abbreviation' => '/year',
         ]);

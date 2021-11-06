@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\CustomBladeServiceProvider;
+
 return [
 
     /*
@@ -176,6 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+
+        // Custom
+        CustomBladeServiceProvider::class,
 
     ],
 
