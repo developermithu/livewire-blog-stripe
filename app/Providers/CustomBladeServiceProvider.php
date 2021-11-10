@@ -42,5 +42,9 @@ class CustomBladeServiceProvider extends ServiceProvider
             $user = Auth::user();
             return $user->isAdmin() || $user->isWriter() || $user->isSuperAdmin();
         });
+
+        Blade::if('writer', function () {
+            return auth()->user()->isWriter();
+        });
     }
 }
