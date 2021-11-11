@@ -34,12 +34,12 @@ class Tag extends Model
         return $this->slug;
     }
 
-    public function imagePath(): string
+    public function imagePath(): ?string
     {
         return $this->image;
     }
 
-    public function description(): string
+    public function description(): ?string
     {
         return $this->description;
     }

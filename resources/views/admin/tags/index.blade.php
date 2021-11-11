@@ -35,7 +35,14 @@
                         </x-table.data>
                         
                         <x-table.data>
-                            <div>Delete</div>
+                           <div class="flex items-center justify-center space-x-3">
+                            <a class="p-1 bg-blue-200 rounded" href="{{ route('admin.tags.edit', $tag) }}">Edit</a>
+                            <x-form class="p-1 bg-red-500 text-white rounded" action="{{ route('admin.tags.destroy', $tag) }}" method="DELETE">
+                                <button type="submit">
+                                    Delete
+                                </button>
+                            </x-form>
+                           </div>
                         </x-table.data>
                     </tr>
                     @endforeach

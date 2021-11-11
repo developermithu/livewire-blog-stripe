@@ -64,10 +64,9 @@
                     <span>{{ __('Index') }}</span>
                 </x-sidenav.admin.link>
             </div>
-
             <div>
-                <x-sidenav.admin.link href="#">
-                    <x-zondicon-user-group class="w-3 text-theme-blue-100" />
+                <x-sidenav.admin.link href="{{ route('admin.tags.create') }}" :active="request()->routeIs('admin.tags.create')">
+                    <x-zondicon-user class="w-3 text-theme-blue-100" />
                     <span>{{ __('Create') }}</span>
                 </x-sidenav.admin.link>
             </div>

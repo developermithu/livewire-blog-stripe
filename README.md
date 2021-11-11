@@ -1,5 +1,7 @@
 <!-- alt+m  for snippets -->
-Start ```php artisan queue:work```
+
+Start `php artisan queue:work`
+
 ### Models
 
 1. User
@@ -22,6 +24,7 @@ Start ```php artisan queue:work```
 1. UserPolicy
 1. PostPolicy
 1. CommentPolicy
+1. TagPolicy
 
 ### Traits
 
@@ -40,13 +43,27 @@ Start ```php artisan queue:work```
 1. PriceCast
 
 ### Providers
+
 CustomBladeServiceProvider
+### Services
+
+SaveImageService
+
+### Observer
+
+TagObserver (register it in EventServiceProvider boot method)
 
 ### Responses
+
 LoginResponse
 
+### Jobs
+CreateTag
+
 ### Middleware
+
 IsAdmin
+
 ### Laravel Cashier Setup
 
 ```
