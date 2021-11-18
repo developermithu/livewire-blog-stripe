@@ -26,7 +26,8 @@
                     {{-- Description --}}
                     <div>
                         <x-form.label for="description" value="{{ __('Description') }}" />
-                        <x-form.textarea id="description" class="block w-full mt-1" type="text" name="description" :value="old('description')"  >
+                        <x-form.textarea id="description" class="block w-full mt-1" type="text" name="description">
+                            {{ old('description') ? old('description') : '' }}
                         </x-form.textarea>
                         <x-form.error for="description" />
                     </div>

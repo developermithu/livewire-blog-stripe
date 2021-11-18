@@ -13,7 +13,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+    @bukStyles(true)
     @livewireStyles
+
+    @stack('css')
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -72,6 +75,8 @@
 
     @stack('modals')
 
+    @bukScripts(true)
     @livewireScripts
+    @stack('js')
 </body>
 </html>

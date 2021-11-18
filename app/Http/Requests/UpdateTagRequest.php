@@ -24,7 +24,7 @@ class UpdateTagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:120'],
+            'name' => 'required | max:120 | unique:tags,name,' . $this->tag->id,
             'image' => ['nullable', 'image', 'mimes:png,jpg', 'max:1048'],
             'description' => ['nullable'],
         ];

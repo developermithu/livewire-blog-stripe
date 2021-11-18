@@ -12,14 +12,13 @@ class SaveImageService
     public static function UploadImage($image, $model, $folder)
     {
         // Option One
+        // use Illuminate\Http\File otherwise it will show error
         $path = Storage::put('public/' . $folder, new File($image));  //maybe putFile
 
         $targetPath = storage_path('app/' . $path);
-
         Image::make($image)->resize(1200, 630)->save($targetPath);
 
         $model->image = $path;
-
         $model->save();
 
         // Option two

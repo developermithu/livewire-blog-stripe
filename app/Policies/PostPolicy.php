@@ -10,23 +10,85 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-
-    // before method will run before authorize policy. don't need to add  || $user->isAdmin() || $user->isSuperAdmin() in update & delete method if this run
-
-    // public function before(User $user): bool
-    // {
-    //     return $user->isAdmin() || $user->isSuperAdmin();
-    // }
-
-    public function update(User $user, Post $post): bool
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewAny(User $user)
     {
-        return $post->isAuthoredBy($user) || $user->isAdmin() || $user->isSuperAdmin();
+        return $user->isAdmin() || $user->isSuperAdmin();
     }
 
-    public function delete(User $user, Post $post): bool
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function view(User $user, Post $post)
     {
-        return $post->isAuthoredBy($user) || $user->isAdmin() || $user->isSuperAdmin();
+        // show method
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function create(User $user)
+    {
+        return $user->isAdmin() || $user->isSuperAdmin() || $user->isWriter();
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user, Post $post)
+    {
+        return $user->isAdmin() || $user->isSuperAdmin() || $post->isAuthoredBy($user);
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete(User $user, Post $post)
+    {
+        return $user->isAdmin() || $user->isSuperAdmin() || $post->isAuthoredBy($user);
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function restore(User $user, Post $post)
+    {
+        return $user->isAdmin() || $user->isSuperAdmin();
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function forceDelete(User $user, Post $post)
+    {
+        return $user->isAdmin() || $user->isSuperAdmin();
     }
 }

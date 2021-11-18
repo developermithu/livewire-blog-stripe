@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
 class CreateTag implements ShouldQueue
 {
@@ -50,6 +51,7 @@ class CreateTag implements ShouldQueue
     {
         $tag = new Tag([
             'name' => $this->name,
+            'slug' => Str::slug($this->name),
             'description' => $this->description,
         ]);
 

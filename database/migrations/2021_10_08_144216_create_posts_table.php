@@ -16,9 +16,9 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
-            $table->string('slug');
+            $table->string('slug')->nullable(); //PostObserve
             $table->longText('body');
-            $table->string('cover_image');
+            $table->string('image')->nullable();
             $table->boolean('is_commentable')->default(1);
             $table->timestamp('published_at');
             $table->enum('type', ['standard', 'premium'])->default('standard');

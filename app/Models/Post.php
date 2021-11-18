@@ -27,7 +27,7 @@ class Post extends Model implements CommentAble
         'title',
         'slug',
         'body',
-        'cover_image',
+        'image',
         'published_at',
         'type',
         'photo_credit_text',
@@ -69,25 +69,40 @@ class Post extends Model implements CommentAble
         return Str::limit(strip_tags($this->body()), $limit, '...');
     }
 
-    public function coverImage(): string
+    public function image(): string
     {
-        return $this->coverImage;  // should cover_image
+        return $this->image;  // should image
+    }
+
+    public function type(): string
+    {
+        return $this->type;
+    }
+
+    public function isCommentable(): bool
+    {
+        return $this->is_commentable;
     }
 
     public function publishedAt(): string
     {
-        return $this->published_at->format('m-d-Y');  
+        return $this->published_at->format('Y-m-d');
     }
 
     // automatically remove tags when destroy the post
     public function delete()
     {
-        $this->removeTags();  // Error
+        $this->removeTags();  
         parent::delete();
     }
 
     public function commentAbleTitle(): string
     {
-        return $this->title;
+        return $this->title();
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

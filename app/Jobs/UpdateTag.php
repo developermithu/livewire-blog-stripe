@@ -12,6 +12,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UpdateTag implements ShouldQueue
 {
@@ -44,6 +46,7 @@ class UpdateTag implements ShouldQueue
     {
         $this->tag->update([
             'name' => $this->name,
+            'slug' => Str::slug($this->name),
             'description' => $this->description,
         ]);
 

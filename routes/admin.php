@@ -12,15 +12,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'isAdmin']], function () {
 
+    // Dashboard
     Route::get('/', DashboardController::class)->name('index');
 
+    // User
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
+    // Posts by Writer
+    Route::get('writer/posts', WriterPostController::class)->name('writer.posts.index');
+
+    // Writers
+    Route::get('writers', [WriterController::class, 'index'])->name('writers.index');
+
+    // Resource Routes
     Route::resource('/posts', PostController::class);
     Route::resource('/tags', TagController::class);
-
-    // Writer Posts
-    Route::get('writer/posts', WriterPostController::class)->name('writer.posts.index');
-    // Writer
-    Route::get('writers', [WriterController::class, 'index'])->name('writers.index');
 });

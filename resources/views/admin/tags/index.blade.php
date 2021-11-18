@@ -13,6 +13,7 @@
                 <thead class="bg-theme-blue-100">
                     <tr>
                         <x-table.head>Name</x-table.head>
+                        <x-table.head>Image</x-table.head>
                         <x-table.head>Slug</x-table.head>
                         <x-table.head class="text-center">Created At</x-table.head>
                         <x-table.head class="text-center">Action</x-table.head>
@@ -24,6 +25,12 @@
                     <tr>
                         <x-table.data>
                             <div>{{ $tag->name() }}</div>
+                        </x-table.data>
+
+                        <x-table.data>
+                            <div>
+                                <img src="{{ asset('storage/' .$tag->imagePath()) }}" alt="img">
+                            </div>
                         </x-table.data>
 
                         <x-table.data>

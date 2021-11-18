@@ -49,9 +49,11 @@ CustomBladeServiceProvider
 
 SaveImageService
 
-### Observer
+### Observer 
+`Observer take a lots of time to seed & crud data. Comment observer at the time of seeding.`
 
 TagObserver (register it in EventServiceProvider boot method)
+PostObserver (register it in EventServiceProvider boot method)
 
 ### Responses
 

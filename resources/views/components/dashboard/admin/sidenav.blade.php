@@ -39,13 +39,18 @@
             @writer
                 <x-sidenav.admin.link href="{{ route('admin.writer.posts.index') }}" :active="request()->routeIs('admin.writer.posts.index')">
                     <x-zondicon-user class="w-3 text-theme-blue-100" />
-                    <span>{{ __('Posts') }}</span>
+                    <span>{{ __('Index') }}</span>
                 </x-sidenav.admin.link>
 
             @else
                 <x-sidenav.admin.link href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts.index')">
                     <x-zondicon-user-group class="w-3 text-theme-blue-100" />
-                    <span>{{ __('Posts') }}</span>
+                    <span>{{ __('Index') }}</span>
+                </x-sidenav.admin.link>
+
+                <x-sidenav.admin.link href="{{ route('admin.posts.create') }}" :active="request()->routeIs('admin.posts.create')">
+                    <x-zondicon-user-group class="w-3 text-theme-blue-100" />
+                    <span>{{ __('Create') }}</span>
                 </x-sidenav.admin.link>
                 @endwriter
             </div>
