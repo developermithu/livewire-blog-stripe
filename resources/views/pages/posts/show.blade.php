@@ -1,4 +1,6 @@
 <x-guest-layout>
+@section('title', $post->title())
+
     <section class="container mx-auto">
         <div class="grid grid-cols-4 gap-10 pt-24">
             {{-- Single Post --}}
@@ -6,46 +8,45 @@
 
                 {{-- Cover Image --}}
                 <div class=" h-96">
-                    <img class="object-cover w-full h-full" src="{{ asset('img/stock/stock-five.jpg') }}" alt="Stock Five">
+                    <img class="object-cover w-full h-full" src="{{ asset('storage/media/posts/' .$post->image) }}" alt="Stock Five">
                 </div>
 
                 {{-- Content --}}
                 <div class="relative flex-1">
                     <div class="mt-16 space-y-8">
                         {{-- Tags --}}
-                        <a href="#" class="text-sm font-bold uppercase text-theme-blue-100">Tags</a>
+                        @forelse ($post->tags() as $tag)
+                        <a href="#" class="text-sm font-bold uppercase text-theme-blue-100">{{ $tag->name }}</a>
+                        @empty
+                        <a href="#" class="text-sm font-bold uppercase text-theme-blue-100">Not found</a>
+                        @endforelse
 
                         {{-- Title --}}
-                        <h2 class="font-serif text-5xl font-bold">
-                            How to set up your living room space? Tips and Tricks
-                        </h2>
+                        <h1 class="font-serif text-5xl font-bold">
+                            {{ $post->title() }}
+                        </h1>
 
                         {{-- Author --}}
                         <div class="flex items-center space-x-8">
                             <div class="flex items-center space-x-4">
                                 <a href="#">
-                                    <img class="object-cover w-12 h-12 rounded" src="{{ asset('img/authors/author-four.jpg') }}" alt="Author One">
+                                    <img class="object-cover w-12 h-12 rounded" src="{{ $post->author()->profile_photo_url }}" alt="{{ $post->author()->name() }}">
                                 </a>
                                 <div class="">
-                                    <h3 class="text-xl font-bold">Michelle Jones</h3>
+                                    <h3 class="text-xl font-bold">{{ $post->author()->type }}</h3>
                                 </div>
                             </div>
 
                             {{-- Date --}}
                             <span class="text-gray-600">
-                                Posted: 4 September 2045
+                                Posted: {{ $post->publishedAt() }}
                             </span>
                         </div>
 
-                        <p class="leading-6 tracking-wide text-gray-700">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veniam doloribus saepe, officia eligendi quaerat magnam? Dicta magni obcaecati commodi explicabo, maiores nemo itaque deserunt porro ratione aspernatur quia, illum ea! Ad corporis odit nihil, reiciendis illo ab earum, quidem mollitia, voluptate iure aliquam! Voluptatibus facilis molestias, placeat libero ratione porro, sit quo ab quibusdam qui ipsum, architecto cum officia itaque sint quod dolor reprehenderit autem unde! Pariatur asperiores, laborum perferendis illo iure tempore quae a quasi, rem iusto assumenda atque laudantium molestiae veniam ducimus obcaecati autem cumque nobis aperiam esse? Dignissimos minima maxime id ducimus sint, alias vero dolores pariatur soluta illo atque quo, laborum esse! Consectetur dolorem totam illo aspernatur laudantium maxime provident quisquam ea vel earum, deleniti blanditiis? Molestias unde cumque numquam iure delectus adipisci asperiores! Asperiores dolores laborum deserunt placeat, debitis pariatur numquam sunt esse in libero consectetur vitae soluta, odio fuga quo ipsa quaerat aliquid distinctio harum! Eius dignissimos impedit nulla ex facere odit quidem! Nulla qui inventore quod, rem in eos ea maxime voluptate autem facilis incidunt repudiandae tempore, quam consequuntur rerum reprehenderit sunt quo error quibusdam amet! Earum incidunt ut expedita aperiam perspiciatis numquam inventore corporis nam, dignissimos doloribus culpa. Quod, deserunt expedita!
-                        </p>
-                        <p class="leading-6 tracking-wide text-gray-700">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veniam doloribus saepe, officia eligendi quaerat magnam? Dicta magni obcaecati commodi explicabo, maiores nemo itaque deserunt porro ratione aspernatur quia, illum ea! Ad corporis odit nihil, reiciendis illo ab earum, quidem mollitia, voluptate iure aliquam! Voluptatibus facilis molestias, placeat libero ratione porro, sit quo ab quibusdam qui ipsum, architecto cum officia itaque sint quod dolor reprehenderit autem unde! Pariatur asperiores, laborum perferendis illo iure tempore quae a quasi, rem iusto assumenda atque laudantium molestiae veniam ducimus obcaecati autem cumque nobis aperiam esse? Dignissimos minima maxime id ducimus sint, alias vero dolores pariatur soluta illo atque quo, laborum esse! Consectetur dolorem totam illo aspernatur laudantium maxime provident quisquam ea vel earum, deleniti blanditiis? Molestias unde cumque numquam iure delectus adipisci asperiores! Asperiores dolores laborum deserunt placeat, debitis pariatur numquam sunt esse in libero consectetur vitae soluta, odio fuga quo ipsa quaerat aliquid distinctio harum! Eius dignissimos impedit nulla ex facere odit quidem! Nulla qui inventore quod, rem in eos ea maxime voluptate autem facilis incidunt repudiandae tempore, quam consequuntur rerum reprehenderit sunt quo error quibusdam amet! Earum incidunt ut expedita aperiam perspiciatis numquam inventore corporis nam, dignissimos doloribus culpa. Quod, deserunt expedita!
-                        </p>
-                        <p class="leading-6 tracking-wide text-gray-700">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi veniam doloribus saepe, officia eligendi quaerat magnam? Dicta magni obcaecati commodi explicabo, maiores nemo itaque deserunt porro ratione aspernatur quia, illum ea! Ad corporis odit nihil, reiciendis illo ab earum, quidem mollitia, voluptate iure aliquam! Voluptatibus facilis molestias, placeat libero ratione porro, sit quo ab quibusdam qui ipsum, architecto cum officia itaque sint quod dolor reprehenderit autem unde! Pariatur asperiores, laborum perferendis illo iure tempore quae a quasi, rem iusto assumenda atque laudantium molestiae veniam ducimus obcaecati autem cumque nobis aperiam esse? Dignissimos minima maxime id ducimus sint, alias vero dolores pariatur soluta illo atque quo, laborum esse! Consectetur dolorem totam illo aspernatur laudantium maxime provident quisquam ea vel earum, deleniti blanditiis? Molestias unde cumque numquam iure delectus adipisci asperiores! Asperiores dolores laborum deserunt placeat, debitis pariatur numquam sunt esse in libero consectetur vitae soluta, odio fuga quo ipsa quaerat aliquid distinctio harum! Eius dignissimos impedit nulla ex facere odit quidem! Nulla qui inventore quod, rem in eos ea maxime voluptate autem facilis incidunt repudiandae tempore, quam consequuntur rerum reprehenderit sunt quo error quibusdam amet! Earum incidunt ut expedita aperiam perspiciatis numquam inventore corporis nam, dignissimos doloribus culpa. Quod, deserunt expedita!
-                        </p>
+                       <div class=" tracking-wide lat leading-6 text-gray-700">
+                        {!! $post->body !!}
+                       </div>
+
                     </div>
                 </div>
 

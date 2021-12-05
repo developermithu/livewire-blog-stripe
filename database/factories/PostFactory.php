@@ -29,7 +29,7 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => $slug,
             'body' => $this->faker->paragraph(5),
-            'image' => 'https://cdn.pixabay.com/photo/2015/04/20/13/17/work-731198_960_720.jpg',
+            'image' => NULL,
             'published_at' => now(),
             'type' => $this->faker->randomElement(['standard', 'premium']),
             'author_id' => rand(1, 10),

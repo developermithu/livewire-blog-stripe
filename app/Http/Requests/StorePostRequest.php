@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required | max:100 | unique:posts',
             'body' => ['required'],
-            'image' => ['required', 'image', 'mimes:png,jpg', 'max:1048'],
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:1048'],
             'published_at' => ['required'],
             'type' => ['required', 'in:standard,premium'],
             'photo_credit_text' => ['nullable'],

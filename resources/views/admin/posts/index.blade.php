@@ -13,6 +13,7 @@
                 <thead class="bg-theme-blue-100">
                     <tr>
                         <x-table.head>Title</x-table.head>
+                        <x-table.head>Image</x-table.head>
                         <x-table.head>Excerpt</x-table.head>
                         <x-table.head>Author</x-table.head>
                         <x-table.head class="text-center">Published At</x-table.head>
@@ -25,6 +26,9 @@
                     <tr>
                         <x-table.data>
                             <div>{{ $post->title() }}</div>
+                            <div>
+                                <img width="60" src="{{ asset('storage/media/posts/' .$post->image()) }}" alt="photo">
+                            </div>
                         </x-table.data>
 
                         <x-table.data>

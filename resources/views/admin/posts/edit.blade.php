@@ -2,6 +2,8 @@
 
     @push('css')
     <link rel="stylesheet" href="{{ asset('css/choices.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     @endpush
 
     {{-- Header --}}
@@ -48,7 +50,8 @@
                     {{-- Body --}}
                     <div>
                         <x-form.label for="body" value="{{ __('Content') }}" />
-                        <x-trix name="body"> {{ $post->body }} </x-trix>
+                        {{-- <x-trix name="body"> {{ $post->body }} </x-trix> --}}
+                        <textarea name="body" id="body"> {{ $post->body }} </textarea>
                         <x-form.error for="body" />
                     </div>
 
@@ -99,4 +102,20 @@
             </x-form>
         </div>
     </section>
+
+    @push('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+    <script>
+      $('#body').summernote({
+        placeholder: 'Content goes here..',
+        tabsize: 2,
+        minHeight: 200
+      });
+    </script>
+    @endpush
+
 </x-app-layout>

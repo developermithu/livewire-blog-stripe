@@ -7,6 +7,7 @@ use App\Contracts\CommentAble;
 use App\Traits\HasAuthor;
 use App\Traits\HasComments;
 use App\Traits\HasTags;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -69,7 +70,7 @@ class Post extends Model implements CommentAble
         return Str::limit(strip_tags($this->body()), $limit, '...');
     }
 
-    public function image(): string
+    public function image(): ?string
     {
         return $this->image;  // should image
     }
@@ -92,7 +93,7 @@ class Post extends Model implements CommentAble
     // automatically remove tags when destroy the post
     public function delete()
     {
-        $this->removeTags();  
+        $this->removeTags();
         parent::delete();
     }
 
@@ -104,5 +105,13 @@ class Post extends Model implements CommentAble
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeLoadLatest(Builder $query, $count = 5)
+    {
+        return $query->whereNotNull('published_at')
+            ->where('published_at', '<=', now())
+            ->latest()
+            ->paginate($count);
     }
 }

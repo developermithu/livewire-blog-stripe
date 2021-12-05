@@ -21,6 +21,6 @@ class TitleCast implements CastsAttributes
      */
     public function get($model, string $key, $value, array $attributes)
     {
-        return Str::ucfirst($value);
+        return ucwords($value);
     }
 }

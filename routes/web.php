@@ -34,7 +34,7 @@ Route::group(['prefix' => 'authors', 'as' => 'authors.'], function () {
 
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/title-of-post', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 // Tags 
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
