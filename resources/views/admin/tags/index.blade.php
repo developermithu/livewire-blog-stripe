@@ -28,9 +28,9 @@
                         </x-table.data>
 
                         <x-table.data>
-                            <div>
-                                <img src="{{ asset('storage/' .$tag->imagePath()) }}" alt="img">
-                            </div>
+                            <a href="{{ asset('storage/' .$tag->imagePath()) }}" target="blank">
+                                <img src="{{ asset('storage/' .$tag->imagePath()) }}" alt="img" class=" w-20">
+                            </a>
                         </x-table.data>
 
                         <x-table.data>

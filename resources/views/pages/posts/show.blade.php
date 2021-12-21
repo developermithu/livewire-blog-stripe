@@ -1,5 +1,18 @@
 <x-guest-layout>
 @section('title', $post->title())
+@section('description', $post->excerpt(50))
+
+@section('keywords')
+    @foreach ($post->tags() as $tag)
+        {{ $tag->name }},
+    @endforeach
+@endsection
+
+@section('metaImage')
+    {{ asset('storage/' .$post->image) }}
+@endsection
+
+
 
     <section class="container mx-auto">
         <div class="grid grid-cols-4 gap-10 pt-24">
@@ -8,7 +21,7 @@
 
                 {{-- Cover Image --}}
                 <div class=" h-96">
-                    <img class="object-cover w-full h-full" src="{{ asset('storage/media/posts/' .$post->image) }}" alt="Stock Five">
+                    <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="Stock Five">
                 </div>
 
                 {{-- Content --}}
@@ -54,20 +67,10 @@
 
                 <div class="flex flex-col items-center mb-24 space-y-4">
                     <h2 class="font-serif font-bold capitalize">Share this post</h2>
-                    <div class="flex flex-wrap gap-3">
-                        <x-buttons.social>
-                            <x-fab-facebook-f class="w-5 h-5" />
-                        </x-buttons.social>
-                        <x-buttons.social>
-                            <x-fab-twitter class="w-5 h-5" />
-                        </x-buttons.social>
-                        <x-buttons.social>
-                            <x-fab-whatsapp class="w-5 h-5" />
-                        </x-buttons.social>
-                        <x-buttons.social>
-                            <x-fab-telegram-plane class="w-5 h-5" />
-                        </x-buttons.social>
-                    </div>
+                    
+                    {{-- Social Share --}}
+                    <x-social.links :post="$post" url="{{ Request::url() }}" /> 
+
                 </div>
 
                 <div class="space-y-6">

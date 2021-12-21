@@ -60,7 +60,13 @@ PostObserver (register it in EventServiceProvider boot method)
 LoginResponse
 
 ### Jobs
+CreatePost
+UpdatePost
+DeletePost
+
 CreateTag
+UpdateTag
+DeleteTag
 
 ### Middleware
 

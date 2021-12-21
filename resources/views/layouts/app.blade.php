@@ -78,5 +78,6 @@
     @bukScripts(true)
     @livewireScripts
     @stack('js')
+
 </body>
 </html>

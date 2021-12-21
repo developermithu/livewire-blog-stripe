@@ -39,28 +39,28 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        // $image = $request->image;
+        // $imgName = uniqid() . '.' . $image->extension(); //same as getClientOriginalExtension()
+        // $image->storeAs('/media/posts', $imgName, 'public');
 
-        $image = $request->image;
-        $imgName = uniqid() . '.' . $image->extension(); //same as getClientOriginalExtension()
-        $image->storeAs('/media/posts', $imgName, 'public');
+        // $post = Post::create([
+        //     'title' => $request->title,
+        //     'slug' => Str::slug($request->title),
+        //     'body' => $request->body,
+        //     'image' => $imgName,
+        //     'published_at' => $request->published_at,
+        //     'photo_credit_text' => $request->photo_credit_text,
+        //     'photo_credit_link' => $request->photo_credit_link,
+        //     'tags' => $request->tags,
+        //     'is_commentable' => $request->isCommentable ? false : true,
+        //     'author_id' => auth()->id(),
+        // ]);
 
-        $post = Post::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'body' => $request->body,
-            'image' => $imgName,
-            'published_at' => $request->published_at,
-            'photo_credit_text' => $request->photo_credit_text,
-            'photo_credit_link' => $request->photo_credit_link,
-            'tags' => $request->tags,
-            'is_commentable' => $request->isCommentable ? false : true,
-            'author_id' => auth()->id(),
-        ]);
+        // $post->authoredBy($request->author());
+        // $post->syncTags($request->tags);
 
-        $post->authoredBy($request->author());
-        $post->syncTags($request->tags);
-
-        // $this->dispatchSync(CreatePost::formRequest($request)); //jobs
+        // Create Post Jobs
+        $this->dispatchSync(CreatePost::formRequest($request));
         return redirect()->route('admin.posts.index')->with('success', 'Post has been created!');
     }
 
@@ -80,32 +80,32 @@ class PostController extends Controller
 
     public function update(UpdatePostRequest $request, Post $post)
     {
+        // if ($request->image) {
+        //     Storage::disk('public')->delete('/media/posts/' . $post->image);
 
-        if ($request->image) {
-            Storage::disk('public')->delete('/media/posts/' . $post->image);
+        //     $image = $request->image;
+        //     $imgName = uniqid() . '.' . $image->extension(); //same as getClientOriginalExtension()
+        //     $image->storeAs('/media/posts', $imgName, 'public');
+        // }
 
-            $image = $request->image;
-            $imgName = uniqid() . '.' . $image->extension(); //same as getClientOriginalExtension()
-            $image->storeAs('/media/posts', $imgName, 'public');
-        }
+        // $post->update([
+        //     'title' => $request->title,
+        //     'slug' => Str::slug($request->title),
+        //     'body' => $request->body,
+        //     'image' => $request->image ? $imgName : $post->image,
+        //     'published_at' => $request->published_at,
+        //     'photo_credit_text' => $request->photo_credit_text,
+        //     'photo_credit_link' => $request->photo_credit_link,
+        //     'tags' => $request->tags,
+        //     'is_commentable' => $request->isCommentable ? false : true,
+        //     'author_id' => auth()->id(),
+        // ]);
 
-        $post->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'body' => $request->body,
-            'image' => $request->image ? $imgName : $post->image,
-            'published_at' => $request->published_at,
-            'photo_credit_text' => $request->photo_credit_text,
-            'photo_credit_link' => $request->photo_credit_link,
-            'tags' => $request->tags,
-            'is_commentable' => $request->isCommentable ? false : true,
-            'author_id' => auth()->id(),
-        ]);
+        // $post->authoredBy($request->author());
+        // $post->syncTags($request->tags);
 
-        $post->authoredBy($request->author());
-        $post->syncTags($request->tags);
-
-        // $this->dispatchSync(UpdatePost::formRequest($post, $request));
+        // Update Post Jobs
+        $this->dispatchSync(UpdatePost::formRequest($post, $request));
         return redirect()->route('admin.posts.index')->with('success', 'Post has been updated!');
     }
 
