@@ -15,7 +15,7 @@ trait HasComments
 
     public function commentsRelation(): MorphMany
     {
-        return $this->morphMany(Comment::class, 'commentsRelation', 'commentable_id', 'commentable_type');
+        return $this->morphMany(Comment::class, 'commentsRelation', 'commentable_type', 'commentable_id');
     }
 
     public function latestComments(int $amount = 5)

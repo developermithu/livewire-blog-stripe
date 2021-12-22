@@ -32,6 +32,8 @@ Start `php artisan queue:work`
 1. HasAuthor
 1. HasTags
 1. HasComments
+1. HasCommentable
+1. HasReplies
 
 ### Contracts
 
@@ -61,12 +63,8 @@ LoginResponse
 
 ### Jobs
 CreatePost
-UpdatePost
-DeletePost
-
 CreateTag
-UpdateTag
-DeleteTag
+CreateComment
 
 ### Middleware
 

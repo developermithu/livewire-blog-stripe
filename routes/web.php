@@ -7,6 +7,7 @@ use App\Http\Controllers\Pages\TagController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\PostController;
 use App\Http\Controllers\Pages\AuthorController;
+use App\Http\Controllers\Pages\CommentController;
 use App\Http\Controllers\Pages\MembershipController;
 use App\Http\Controllers\Stripe\PaymentController;
 
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/membership', MembershipController::class)->name('membership');
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
 // Authors

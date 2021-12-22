@@ -10,4 +10,8 @@ return [
         'app_id' => env('FACEBOOK_APP_ID'),
     ],
 
+    'comments' => [
+        'max' => env('MAX_COMMENT_LEVEL'),
+    ],
+
 ];

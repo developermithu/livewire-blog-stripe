@@ -80,6 +80,11 @@ class Post extends Model implements CommentAble
         return $this->type;
     }
 
+    public function isPremium(): bool
+    {
+        return $this->type == 'premium' ;
+    }
+
     public function isCommentable(): bool
     {
         return $this->is_commentable;

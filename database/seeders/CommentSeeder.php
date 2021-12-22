@@ -17,6 +17,7 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
+
         $users = User::all();
         $posts = Post::all();
 
@@ -31,5 +32,6 @@ class CommentSeeder extends Seeder
                 ))
                 ->create();
         });
+        
     }
 }

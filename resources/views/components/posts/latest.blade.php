@@ -4,11 +4,24 @@
     </a>
     <section class="relative flex-1">
         <div class="mt-16 space-y-8">
-            <div class="flex space-x-4">
-                @foreach ($post->tags() as $tag)
-                <a href="#" class="text-sm font-bold uppercase text-theme-blue-100">  {{ $tag->name() }}  </a>
+            
+            <div class="flex items-center justify-between space-x-4">
+                <div class="flex space-x-4">
+                    @foreach ($post->tags() as $tag)
+                    <a href="#" class="text-sm font-bold uppercase text-theme-blue-100"> 
+                        {{ $tag->name() }} 
+                    </a>
                 @endforeach
+                </div>
+
+                {{-- Premium Post --}}
+                @if ($post->isPremium())
+                    <div>
+                        <h2 class="p-2 text-sm text-gray-200 bg-gray-800 uppercase"> Premium </h2>
+                    </div>
+                @endif
             </div>
+
             <h2 class="font-serif text-5xl font-bold">
                 {{ $post->title() }}
             </h2>
