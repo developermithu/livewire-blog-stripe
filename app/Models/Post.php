@@ -82,7 +82,7 @@ class Post extends Model implements CommentAble
 
     public function isPremium(): bool
     {
-        return $this->type == 'premium' ;
+        return $this->type == 'premium';
     }
 
     public function isCommentable(): bool
@@ -115,8 +115,21 @@ class Post extends Model implements CommentAble
     public function scopeLoadLatest(Builder $query, $count = 5)
     {
         return $query->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->published()
             ->latest()
             ->paginate($count);
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('published_at', '<=', now());
+    }
+
+    public function scopeForTag(Builder $query, string $tag): Builder
+    {
+        return $query->published()
+            ->whereHas('tagsRelation', function ($query) use ($tag) {
+                $query->where('tags.slug', $tag);
+            });
     }
 }

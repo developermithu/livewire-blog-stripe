@@ -39,6 +39,7 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 
 // Tags 
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/{tag}', [TagController::class, 'show'])->name('tags.show');
 
 // Dashboard
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

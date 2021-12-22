@@ -78,3 +78,6 @@ php artisan migrate
 php artisan vendor:publish --tag="cashier-migrations" (created three tables in db)
 use Billable (In User Model)
 ```
+
+# Have To Do
+1. Stop duplicate replies in the post
