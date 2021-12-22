@@ -1,4 +1,6 @@
 <x-guest-layout>
+@section('title', $tag->name)
+
     <x-slot name="header">
         <x-slot name="title">
           {{ $tag->name }}
@@ -31,9 +33,11 @@
             @endforeach
         </div>
 
-        <div class=" p-4 my-20 bg-gray-100">
-            {{ $posts->links() }}
-        </div>
+        @if ($posts->hasPages())
+            <div class=" py-3 px-6 my-16 bg-gray-200">
+                {{ $posts->links() }}
+            </div>
+        @endif
 
     </section>
 </x-guest-layout>

@@ -1,7 +1,13 @@
 <div x-data="{ show: false }">
-    <button class="text-sm font-semibold text-blue-500 uppercase" @click="show = !show" :aria-expanded="show ? 'true' : 'false'" :class="{ 'active': show }">
-        Reply
-    </button>
+
+    @if (!$comment->maximumReplies())
+        <button class="text-sm font-semibold text-blue-500 uppercase" @click="show = !show" :aria-expanded="show ? 'true' : 'false'" :class="{ 'active': show }">
+            Reply
+        </button>
+    @else
+        <h2 class="text-sm text-red-500"> Maximum replies reached for this comment </h2>
+    @endif
+
 
     <div x-show="show">
         <x-form action="{{ route('comments.store') }}" class="space-y-4">

@@ -142,6 +142,10 @@
                                 <span class="text-gray-600">
                                     Posted: {{ $post->publishedAt() }}
                                 </span>
+
+                                <span class="text-gray-600">
+                                     {{ $post->readTime() }} minutes to read
+                                </span>
                             </div>
 
                         <div class=" tracking-wide lat leading-6 text-gray-700">

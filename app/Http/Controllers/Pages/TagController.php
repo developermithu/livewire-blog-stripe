@@ -17,7 +17,7 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
-        $posts = Post::forTag($tag->slug)->paginate(3);  //scopeForTag
+        $posts = Post::forTag($tag->slug)->paginate(10);  //scopeForTag
         return view('pages.tags.show', compact('tag', 'posts'));
     }
 }

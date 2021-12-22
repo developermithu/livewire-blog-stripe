@@ -28,10 +28,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 // Authors
-Route::group(['prefix' => 'authors', 'as' => 'authors.'], function () {
-    Route::get('/', [AuthorController::class, 'index'])->name('index');
-    Route::get('michelle-jones', [AuthorController::class, 'show'])->name('show');
-});
+    Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+    Route::get('/{user:name}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

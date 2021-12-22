@@ -95,6 +95,12 @@ class Post extends Model implements CommentAble
         return $this->published_at->format('Y-m-d');
     }
 
+    public function readTime()
+    {
+        $minutes = round(str_word_count(strip_tags($this->body())) / 200);
+        return $minutes == 0 ? 1 : $minutes;
+    }
+
     // automatically remove tags when destroy the post
     public function delete()
     {

@@ -14,4 +14,8 @@ return [
         'max' => env('MAX_COMMENT_LEVEL'),
     ],
 
+    'replies' => [
+        'max' => env('MAX_REPLIES_TO_COMMENT'),
+    ],
+
 ];
