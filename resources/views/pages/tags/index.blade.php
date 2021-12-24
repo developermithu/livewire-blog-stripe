@@ -7,7 +7,7 @@
         </header>
 
         <div class="grid grid-cols-4 gap-6" data-aos="fade-up" data-aos-offset="100" data-aos-duration="500">
-
+{{-- @dump($tags)
             @foreach ($tags as $tag)
                 <a href="{{ route('tags.show', $tag) }}" class="relative col-span-1 cursor-pointer hover:shadow">
                     <img class="w-full h-full transition-all obeject-cover opacity-80 duration-250 hover:opacity-100" src="{{ asset('storage/' .$tag->imagePath()) }}" alt="{{ $tag->name }}">
@@ -16,7 +16,7 @@
                         {{ $tag->name }}
                     </h2>
                 </a>
-            @endforeach
+            @endforeach --}}
 
         </div>
     </section>

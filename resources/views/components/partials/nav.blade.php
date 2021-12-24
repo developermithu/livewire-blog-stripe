@@ -37,11 +37,6 @@
                         {{ __('Authors') }}
                     </x-jet-nav-link>
 
-                    {{-- Post Tag--}}
-                    <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                        {{ __('Post by Tag') }}
-                    </x-jet-nav-link>
-
                     {{-- Checkout --}}
                     <x-jet-nav-link href="{{ route('payments') }}" :active="request()->routeIs('payments')">
                         {{ __('Checkout') }}

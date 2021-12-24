@@ -25,7 +25,11 @@
 
                             {{-- Cover Image --}}
                             <div class=" h-96">
-                                <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="Stock Five">
+                                @if ($post->image)
+                                    <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="{{ $post->title }}">
+                                @else
+                                    <img class="object-cover w-full h-full" src="https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg" alt="{{ $post->title }}">            
+                                @endif
                             </div>
 
                             {{-- Content --}}
@@ -104,12 +108,17 @@
                         </div>
                 @endauth
 
+
             @else  {{-- Free Post --}}
                 <article class="col-span-3" data-aos="fade-up" data-aos-duration="500">
 
                     {{-- Cover Image --}}
                     <div class=" h-96">
-                        <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="Stock Five">
+                                @if ($post->image)
+                                    <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="{{ $post->title }}">
+                                @else
+                                    <img class="object-cover w-full h-full" src="https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg" alt="{{ $post->title }}">            
+                                @endif
                     </div>
 
                     {{-- Content --}}
@@ -161,7 +170,7 @@
                         <h2 class="font-serif font-bold capitalize">Share this post</h2>
                         
                         {{-- Social Share --}}
-                        <x-social.links :post="$post" url="{{ Request::url() }}" /> 
+                        <x-social.shares :post="$post" url="{{ Request::url() }}" /> 
 
                     </div>
 
@@ -174,7 +183,7 @@
             @endif
 
             {{-- Side nav --}}
-            <x-sidenav.post />
+            <x-sidenav.index :author="$post->author()" :popularPosts="$popularPosts" :tags="$tags" />
 
         </div>
     </section>

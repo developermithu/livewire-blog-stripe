@@ -1,7 +1,12 @@
 <article class="flex" data-aos="fade-up">
     <a href="{{ route('posts.show', $post) }}" class="post-image">
-        <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="{{ $post->title }}">
+        @if ($post->image)
+            <img class="object-cover w-full h-full" src="{{ asset('storage/' .$post->image) }}" alt="{{ $post->title }}">
+        @else
+            <img class="object-cover w-full h-full" src="https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg" alt="{{ $post->title }}">            
+        @endif
     </a>
+    
     <section class="relative flex-1">
         <div class="mt-16 space-y-8">
             

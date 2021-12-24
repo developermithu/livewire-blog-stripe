@@ -14,30 +14,10 @@
 
                 {{-- Socials Links --}}
                 <div class="flex space-x-4">
-                    @if (!empty($user->profile->facebook))
-                    <a href="{{ $user->profile->facebook }}" target="_blank">
-                        <x-fab-facebook-f class="h-4 text-theme-blue-200" />
-                    </a>
-                @endif
-
-                @if (!empty($user->profile->twitter))
-                    <a href="{{ $user->profile->twitter }}" target="_blank">
-                        <x-fab-twitter class="h-4 text-theme-blue-200" />
-                    </a>
-                @endif
-
-                @if (!empty($user->profile->instagram))
-                    <a href="{{ $user->profile->instagram }}" target="_blank">
-                        <x-fab-instagram-square class="h-4 text-theme-blue-200" />
-                    </a>
-                @endif
-
-                @if (!empty($user->profile->linkedin))
-                    <a href="{{ $user->profile->linkedin }}" target="_blank">
-                        <x-fab-linkedin-in class="h-4 text-theme-blue-200" />
-                    </a>
-                @endif
+                    <x-social.links :author="$user"/>
                 </div>
+
+
             </div>
         </x-slot>
 
@@ -49,7 +29,7 @@
     <section class="container mx-auto">
 
         <header class="flex flex-col py-8 mt-8 mb-12 space-y-8 text-center">
-            <h2 class="font-serif text-4xl font-bold">Michelle's latest posts</h2>
+            <h2 class="font-serif text-4xl font-bold"> {{ $user->name }} latest posts</h2>
             <hr class="self-center w-40 border-b-4 border-theme-blue-200">
         </header>
 

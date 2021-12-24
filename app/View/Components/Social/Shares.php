@@ -4,7 +4,7 @@ namespace App\View\Components\Social;
 
 use Illuminate\View\Component;
 
-class Links extends Component
+class Shares extends Component
 {
     public $post;
     public $url;
@@ -27,6 +27,6 @@ class Links extends Component
      */
     public function render()
     {
-        return view('components.social.links');
+        return view('components.social.shares');
     }
 }
