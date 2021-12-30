@@ -5,10 +5,36 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <h2 class=" text-green-500 text-3xl text-center p-5">Billing Success </h2>
+    <section class="px-6">
+        <div class="overflow-hidden border-b border-gray-200">
+            <table class="min-w-full">
+                <thead class="bg-theme-blue-100">
+                    <tr>
+                        <x-table.head>Date</x-table.head>
+                        <x-table.head>Total</x-table.head>
+                        <x-table.head class="text-center">Action</x-table.head>
+                    </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-200 divide-solid">
+                    @foreach ($invoices as $invoice)
+                    <tr>
+                        <x-table.data>
+                            {{ $invoice->date()->toFormattedDateString() }}
+                        </x-table.data>
+                        
+                        <x-table.data>
+                            {{ $invoice->total() }}
+                        </x-table.data>
+
+                        <x-table.data>
+                            <a href="{{ route('billing.invoice.download', $invoice->id) }}">Download</a>
+                        </x-table.data>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-    </div>
+    </section>
+    
 </x-app-layout>

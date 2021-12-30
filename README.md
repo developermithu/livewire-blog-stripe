@@ -79,5 +79,7 @@ php artisan vendor:publish --tag="cashier-migrations" (created three tables in d
 use Billable (In User Model)
 ```
 
-# Have To Do
+# Have To Fix
 1. Stop duplicate replies in the post
+2. user trial_ends_at have to null when subscribe payment method
+3. user profile reloading 

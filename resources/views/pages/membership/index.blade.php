@@ -8,7 +8,10 @@
             <hr class="self-center w-40 border-b-4 border-theme-blue-200">
         </header>
 
-        <div class="grid grid-cols-3 gap-8 my-16" data-aos="fade-up" data-aos-offset="100" data-aos-duration="500">
+        {{-- Session Message --}}
+        <x-alerts.main/>
+
+        <div class="grid grid-cols-3 gap-8 my-16">
             {{-- Free Plan --}}
             <div class="border border-gray-200 divide-y divide-gray-200 shadow-lg bg-gray-50">
                 <div class="p-6">
@@ -78,8 +81,29 @@
                         <span class="text-base font-medium text-gray-500">{{ $plan->abbreviation() }}</span>
                     </p>
 
-                    @subscribedToProduct(auth()->user(), $plan->stripeProductId(), $plan->stripeName())
-                        <h2 class="p-2 mt-6 text-center bg-green-500 rounded text-lg text-white">You have already subscribed</h2>
+                    @subscribedToProduct($user, $plan->stripeProductId(), $plan->stripeName())
+
+                        @if ($user->onTrial($plan->stripeName()))
+                            <h2 class="p-2 text-pink-700">
+                                Your trial will end on {{ $user->trialEndsAt($plan->stripeName())->format('d F Y') }}  
+                            </h2>
+                        @else
+                            <h2 class="p-2 mt-6 text-center bg-green-500 rounded text-lg text-white">You have already subscribed</h2>
+
+                            @onGracePeriod($plan->stripeName())
+                                <h2 class="p-2 text-pink-700">Your subscription will end on {{ $user->subscription($plan->stripeName())->ends_at->format('d F Y') }} </h2>
+
+                                {{-- Resume Subscription --}}
+                                <div class="my-5">
+                                    <a href="{{ route('subscription.update', $plan->stripeName()) }}" class="px-6 py-2 text-center bg-blue-500 text-white rounded w-full"> Resume Subscription </a>
+                                </div>
+                            @else 
+                                {{-- Cancel Subscription --}}
+                                <div class="my-5">
+                                    <a href="{{ route('subscription.destroy', $plan->stripeName()) }}" class="px-6 py-2 text-center bg-red-600 text-white rounded"> Cancel Subscription </a>
+                                </div>
+                            @endonGracePeriod
+                        @endif
 
                     @else
                         <x-link.primary href="{{ route('payments', ['plan' => $plan->stripeName()]) }}">

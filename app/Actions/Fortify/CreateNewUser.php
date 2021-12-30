@@ -31,6 +31,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'trial_ends_at' => now()->addMonth(), //30 days
         ]);
 
         $user->createAsStripeCustomer();

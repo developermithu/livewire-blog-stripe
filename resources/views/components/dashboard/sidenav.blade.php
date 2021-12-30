@@ -20,6 +20,19 @@
             </div>
         </div>
 
+                {{-- Billing --}}
+                <div>
+                    <x-sidenav.title>
+                        {{ __('Billing') }}
+                    </x-sidenav.title>
+                    <div>
+                        <x-sidenav.link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                            <x-zondicon-user class="w-3 text-theme-blue-100" />
+                            <span>{{ __('index') }}</span>
+                        </x-sidenav.link>
+                    </div>
+                </div>
+
         {{-- Post --}}
         <div>
             <x-sidenav.title>

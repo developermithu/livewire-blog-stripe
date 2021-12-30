@@ -9,6 +9,7 @@ use App\Http\Controllers\Pages\PostController;
 use App\Http\Controllers\Pages\AuthorController;
 use App\Http\Controllers\Pages\CommentController;
 use App\Http\Controllers\Pages\MembershipController;
+use App\Http\Controllers\Pages\SubscriptionController;
 use App\Http\Controllers\Stripe\PaymentController;
 
 require 'admin.php';
@@ -16,8 +17,6 @@ require 'admin.php';
 Route::get('/', HomeController::class)->name('home');
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
-// Billing
-Route::get('/dashboard/billing', [BillingController::class, 'index'])->name('billing');
 
 // Authenticate Route
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -25,11 +24,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+    Route::get('/subscription/update/{subscription}', [SubscriptionController::class, 'update'])->name('subscription.update');
+    Route::get('/subscription/cancel/{subscription}', [SubscriptionController::class, 'destroy'])->name('subscription.destroy');
+
+    // Billing
+    Route::get('/dashboard/billing', [BillingController::class, 'index'])->name('billing.index');
+    Route::get('/dashboard/billing/invoices/{invoice}', [BillingController::class, 'download'])->name('billing.invoice.download');
 });
 
 // Authors
-    Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
-    Route::get('/{user:name}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+Route::get('/{user:name}', [AuthorController::class, 'show'])->name('authors.show');
 
 // Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

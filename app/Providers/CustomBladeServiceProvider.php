@@ -38,6 +38,14 @@ class CustomBladeServiceProvider extends ServiceProvider
             return $user->subscribedToProduct($id, $name);
         });
 
+        // Blade::if('onTrial', function ($user, $plan) {
+        //     return $user->onTrial($plan);
+        // });
+
+        Blade::if('onGracePeriod', function ($plan) {
+            return auth()->user()->subscription($plan)->onGracePeriod();
+        });
+
         Blade::if('admin', function () {
             $user = Auth::user();
             return $user->isAdmin() || $user->isWriter() || $user->isSuperAdmin();
